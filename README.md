@@ -12,7 +12,7 @@ To use compiler optimizations, we can use flags when compiling code in the termi
 
 Dead code elimination removes instructions from a C program that have no impact on its final behavior or output, such as unreachable code or unused variables. It speeds up runtime as it and prevents the CPU from doing useless work. Since the resulting binary and assembly code are smaller, dead code elimination also helps with memory.
 
-### `next_unused` and `next_logged` in [examples.c](program_and_executables/examples.c)
+### `next_unused` and `next_logged` in [examples.c](compiler-optimizations/program_and_executables/examples.c)
 
 ```c
 #include <stdio.h>
@@ -36,7 +36,7 @@ The function next_unused takes in an unsigned integer x, squares it, and assigns
 
 ### Assembly at `-O0` and `-O2`
 
-#### `next_unused` at `-O0` ([excerpt](assembly/examples-O0.s#L14-L19))
+#### `next_unused` at `-O0` ([excerpt](compiler-optimizations/assembly/examples-O0.s#L14-L19))
 
 ```asm
     movl    %edi, -20(%rbp)
@@ -49,7 +49,7 @@ The function next_unused takes in an unsigned integer x, squares it, and assigns
 
 Looking at the assembly code that we compiled with the default -O0 flag that disables most optimizations, we can see that the imull, or integer multiplication, operation still occurs even though the variable square is never used.
 
-#### `next_unused` at `-O2` ([excerpt](assembly/examples-O2.s#L9-L11))
+#### `next_unused` at `-O2` ([excerpt](compiler-optimizations/assembly/examples-O2.s#L9-L11))
 
 ```asm
     endbr64
@@ -59,7 +59,7 @@ Looking at the assembly code that we compiled with the default -O0 flag that dis
 
 However, looking at the resulting assembly code compiled with the -O2 flag, which included optimizations such as dead code elimination, function inlining, and vectorization, we can see that the whole function in assembly instructions does not include the imull call for the unused square variable.
 
-#### `next_logged` at `-O2` ([excerpt](assembly/examples-O2.s#L32-L35))
+#### `next_logged` at `-O2` ([excerpt](compiler-optimizations/assembly/examples-O2.s#L32-L35))
 
 ```asm
     imull   %edi, %edx
@@ -74,7 +74,7 @@ However, looking at the resulting assembly code compiled with the -O2 flag, whic
 
 Loop unrolling speeds up programs by repeating the loop body many times in one iteration. This reduces the total number of times the program needs to check loop conditions and update counters. Loop unrolling can be done through specific compiler flags such as -O3 or -funroll-loops or also explicitly added in programs. Higher optimization levels unroll loops more aggressively, or in other words, have a higher unrolling factor, which is the number iterations are unrolled into a singular iteration.
 
-### `sum` in [examples.c](program_and_executables/examples.c)
+### `sum` in [examples.c](compiler-optimizations/program_and_executables/examples.c)
 
 ```c
 #include <stddef.h>
@@ -92,7 +92,7 @@ unsigned sum(const unsigned *values, size_t count)
 
 `sum` takes in a pointer to a unsigned integer array and a unsigned size_t count. We are only reading the elements from values, so we can use const in the parameter declaration. This function uses a for loop to sum up all of the elements in values and returns it.
 
-### `sum` Tests in [check.c](program_and_executables/check.c)
+### `sum` Tests in [check.c](compiler-optimizations/program_and_executables/check.c)
 
 ```c
 const unsigned values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -106,7 +106,7 @@ for (size_t n = 0; n <= sizeof values / sizeof values[0]; ++n)
 
 ### Scalar and Unrolled Assembly
 
-#### Scalar Loop ([excerpt](assembly/scalar.s#L56-L61))
+#### Scalar Loop ([excerpt](compiler-optimizations/assembly/scalar.s#L56-L61))
 
 ```asm
 .L7:
@@ -119,7 +119,7 @@ for (size_t n = 0; n <= sizeof values / sizeof values[0]; ++n)
 
 `.L7:` is a generic local label in assembly to mark specific memory addresses. We can infer that this snippet refers to a loop because there is a backwards jump instruction, `jne`, to `.L7`. In the loop body there is only one `addl
 
-#### Unrolled Loop ([excerpt](assembly/unrolled.s#L91-L103))
+#### Unrolled Loop ([excerpt](compiler-optimizations/assembly/unrolled.s#L91-L103))
 
 ```asm
 .L7:
