@@ -1,0 +1,16 @@
+*Compile and check that the functions work*
+gcc -O0 examples.c check.c -o check-O0
+gcc -O2 examples.c check.c -o check-O2
+gcc -O2 -fno-tree-vectorize -funroll-loops examples.c check.c -o check-unrolled
+
+./check-O0
+./check-O2
+./check-unrolled
+
+*Check for dead code elimination in assembly*
+gcc -O0 -S examples.c -o examples-O0.s
+gcc -O2 -S examples.c -o examples-O2.s
+
+*Check for loop unrolling in assembly*
+gcc -O2 -fno-tree-vectorize -fno-unroll-loops -S examples.c -o scalar.s
+gcc -O2 -fno-tree-vectorize -funroll-loops -S examples.c -o unrolled.s
