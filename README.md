@@ -173,9 +173,10 @@ gcc -O2 -fno-tree-vectorize -funroll-loops -S examples.c -o unrolled.s
 
 I learned that there are many things that go on behind the scenes that help us optimize our code. Specifically, I learned a lot about dead code elimination and loop unrolling through analyzing differences in assembly code. While we need to use specific flags and options in C, most high-level programming languages have built-in optimizations in their compilers or runtime execution. What I found that was extremely interesting is that different higher levels of optimizations can also slow down code because some optimization methods might conflict with each other or increase the size of the assembly and binary executables. Therefore, it is important for developers to know which optimizations to utilize that are suitable for specific situations.
 
-## Presentation Slides
+## Presentation Slides and Video
 
-[COMP-211 Checkoff 2: Compiler Optimizations](https://docs.google.com/presentation/d/17jMmqR0vxBuVcE14MI6_Yzk3vStNgNZeynsNe49c0us/edit?usp=sharing)
+[COMP-211 Checkoff 3: Compiler Optimizations](https://docs.google.com/presentation/d/17jMmqR0vxBuVcE14MI6_Yzk3vStNgNZeynsNe49c0us/edit?usp=sharing)
+[COMP-211 Checkoff 3 Presentation Video](https://youtu.be/eOzb6raOqQM)
 
 ## References
 
