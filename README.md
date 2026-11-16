@@ -175,8 +175,8 @@ I learned that there are many things that go on behind the scenes that help us o
 
 ## Presentation Slides and Video
 
-[COMP-211 Checkoff 3: Compiler Optimizations](https://docs.google.com/presentation/d/17jMmqR0vxBuVcE14MI6_Yzk3vStNgNZeynsNe49c0us/edit?usp=sharing)
-[COMP-211 Checkoff 3 Presentation Video](https://youtu.be/eOzb6raOqQM)
+- [COMP-211 Checkoff 3: Compiler Optimizations](https://docs.google.com/presentation/d/17jMmqR0vxBuVcE14MI6_Yzk3vStNgNZeynsNe49c0us/edit?usp=sharing)
+- [COMP-211 Checkoff 3 Presentation Video](https://youtu.be/eOzb6raOqQM)
 
 ## References
 
